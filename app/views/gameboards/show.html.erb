@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<div class="pt-4">
+  <h1><%= @gameboard.name %></h1>
+  <%= image_tag @gameboard.board_box.variant(resize: "300x300", type: :grayscale).processed, class: 'py-4' %>
+  <div class="pb-4">
+    <h3>Reglas</h3>
+    <%= @gameboard.rules %>
+    <%= link_to 'Descargar Reglas', rails_blob_path(@gameboard.board_rule, disposition: 'attachment'), class: 'd-block pt-4' %>
+  </div>
+  <div class="pb-4">
+    <h3>Tablero</h3>
+    <% @gameboard.board_parts.each do |parts| %>
+      <div class="d-inline-flex flex-column">
+        <%= image_tag parts.variant(resize: "100x100", type: :grayscale).processed, class: 'pb-3' %>
+        <%= link_to 'Descargar Imagen', rails_blob_path(parts, disposition: 'attachment') %>
+      </div>
+    <% end %>
+  </div>
+  <div class="pb-4">
+    <h3>Piezas</h3>
+      <% @gameboard.pieces.each do |piece| %>
+      <div class="d-inline-flex flex-column mr-4">
+        <%= image_tag piece.variant(resize: "100x100", type: :grayscale).processed, class: 'pb-3' %>
+        <%= link_to 'Descargar Imagen', rails_blob_path(piece, disposition: 'attachment') %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="btn-group py-4" role="group" aria-label="Basic example">
+    <%= link_to 'Editar', edit_gameboard_path(@gameboard), class: 'btn btn-secondary' %>
+    <%= link_to 'Atrás', gameboards_path, class: 'btn btn-outline-secondary' %>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<%= form_with(model: gameboard, local: true) do |form| %>
+  <% if gameboard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gameboard.errors.count, "error") %> prohibited this gameboard from being saved:</h2>
+      <ul>
+        <% gameboard.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group py-2">
+    <%= form.label :name, 'Nombre' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group py-2">
+    <%= form.label :rules, 'Reglas' %>
+    <%= form.text_area :rules, class: 'form-control' %>
+  </div>
+  <div class="form-group py-2">
+    <%= form.label :board_box, 'Caja' %>
+    <%= form.file_field :board_box, class: 'form-control-file' %>
+  </div>
+  <div class="form-group py-2">
+    <%= form.label :board_rule, 'Manual de Reglas' %>
+    <%= form.file_field :board_rule, class: 'form-control-file' %>
+    <small id="emailHelp" class="form-text text-muted">Formato soportado: PDF</small>
+  </div>
+  <div class="form-group py-2">
+    <%= form.label :pieces, 'Piezas de Tablero' %>
+    <%= form.file_field :pieces, multiple: true, class: 'form-control-file' %>
+  </div>
+  <div class="form-group py-2">
+    <%= form.label :board_parts, 'Partes del Tablero' %>
+    <%= form.file_field :board_parts, multiple: true, class: 'form-control-file' %>
+  </div>
+  <div class="actions py-2">
+    <%= form.submit 'Agregar Tablero', class: 'btn btn-primary' %>
+  </div>
+<% end %>

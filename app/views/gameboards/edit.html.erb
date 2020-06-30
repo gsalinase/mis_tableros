@@ -1,0 +1,8 @@
+<h1 class="py-4">Editar Tablero</h1>
+
+<%= render 'form', gameboard: @gameboard %>
+
+<div class="btn-group py-4" role="group" aria-label="Basic example">
+  <%= link_to 'Ver', @gameboard, class: 'btn btn-secondary' %>
+  <%= link_to 'Atrás', gameboards_path, class: 'btn btn-outline-secondary' %>
+</div>
